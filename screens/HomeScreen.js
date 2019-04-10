@@ -22,11 +22,20 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <View style={styles.welcomeContainer}> 
+          <Button
+              title="Passenger Reminder"
+              onPress={() =>
+                  this.props.navigation.navigate('Reminder')
+              }
+           />
+        </View>
+
           <View style={styles.welcomeContainer}>
             <Button
-                title="Add a profile!"
+                title="Leave Passenger In Car"
                 onPress={() =>
-                    this.props.navigation.navigate('Profile')
+                    this.props.navigation.navigate('StateLaw')
                 }
              />
           </View>
