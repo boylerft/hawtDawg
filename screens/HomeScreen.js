@@ -29,6 +29,12 @@ export default class HomeScreen extends React.Component {
                     this.props.navigation.navigate('Profile')
                 }
              />
+            <Button
+                title="Go to Timer Screen"
+                onPress={() =>
+                    this.props.navigation.navigate('Timer')
+                }
+            />
           </View>
 
           <View style={styles.getStartedContainer}>
