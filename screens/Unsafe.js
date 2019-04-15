@@ -1,4 +1,4 @@
-// Screen marking a dangerous temperature condition trigger. Disarm button returns to home screen.
+// screen telling user it is too dangerous to use the leave-in0car feature. Acknoledge returns to home screen.
 import React from 'react';
 import {
   Image,
@@ -21,16 +21,9 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
   getStartedContainer: {
     marginHorizontal: 20,
-    marginTop: 40,
+    marginTop: 20,
     textAlign: 'center'
   },
   getStartedText: {
@@ -59,24 +52,24 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class DisarmLeaveInCarScreen extends React.Component {
+export default class UnsafeScreen extends React.Component {
     static navigationOptions = {
       header: null,
     };
-  
+    
     render() {
       return (
         <View style={styles.container}>
           <ScrollView style={styles.getStartedContainer} contentContainerStyle={styles.contentContainer}>
+
+          <View style ={styles.getStartedContainer}>
+            <Text style={styles.getStartedText}>ATTENTION!</Text>
+            <Text style={styles.getStartedText}>Conditions are too dangerous to leave passengers unattended in your vehicle at this time.</Text>
           
-            <View style={styles.getStartedContainer}>
-              <Text style={styles.getStartedText}>DANGER!</Text>
-              <Text style={styles.getStartedText}>Conditions are becoming unsafe for passengers in your car. Return to your vehicle now.</Text>
-            
-              <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
-              <Text style={styles.buttonText}>Disarm</Text>
-              </TouchableHighlight>
-            </View>
+            <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
+            <Text style={styles.buttonText}>Acknowledge</Text>
+            </TouchableHighlight>
+          </View>
 
           </ScrollView>
         </View>

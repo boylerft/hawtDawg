@@ -10,11 +10,11 @@ import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import DismissLeaveInCar from '../screens/DismissLeaveInCar';
 import DismissReminder from '../screens/DismissReminder';
-//import DisarmLeaveInCar from '../screens/DisarmLeaveInCar';
-//import DisarmReminder from '../screens/DisarmReminder';
-//import LowBattery from '../screens/LowBattery';
-//import TooUnsafeToLeave from '../screens/TooUnsafeToLeave';
 import StateLaw from '../screens/StateLaw';
+import DisarmLeaveInCar from '../screens/DisarmLeaveInCar';
+import DisarmReminder from '../screens/DisarmReminder';
+import LowBattery from '../screens/LowBattery';
+import Unsafe from '../screens/Unsafe';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -23,11 +23,10 @@ const HomeStack = createStackNavigator({
   LeaveInCar: DismissLeaveInCar,
   Reminder: DismissReminder,
   StateLaw: StateLaw,
-  //DisarmLeaveInCar: DisarmLeaveInCar,
-  //DisarmReminder: DisarmReminder,
-  //LowBattery: LowBattery,
-  //CantLeave: TooUnsafeToLeave,
-  
+  DisarmReminder: DisarmReminder,
+  DisarmLeave: DisarmLeaveInCar,
+  Unsafe: Unsafe,
+  LowBattery: LowBattery,
 });
 
 HomeStack.navigationOptions = {

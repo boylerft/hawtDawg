@@ -6,10 +6,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   View,
   Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import Logo from './Logo.js';
 
 import { MonoText } from '../components/StyledText';
 
@@ -22,25 +24,43 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}> 
-          <Button
-              title="Passenger Reminder"
-              onPress={() =>
-                  this.props.navigation.navigate('Reminder')
-              }
-           />
-        </View>
 
-          <View style={styles.welcomeContainer}>
-            <Button
-                title="Leave Passenger In Car"
-                onPress={() =>
-                    this.props.navigation.navigate('StateLaw')
-                }
+          <View style={styles.welcomeImage}>
+            <Logo
+            style={styles.Image}
              />
+          </View>
+  
+          <View style={styles.getStartedContainer}>
+            <Text style={styles.getStartedText}>Today's date</Text>
+            <Text style={styles.getStartedText}>City, State</Text>
+            <Text style={styles.getStartedText}>Current Temperature</Text>
           </View>
 
           <View style={styles.getStartedContainer}>
+          <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Reminder')}>
+            <Text style={styles.buttonText}>Passenger Reminder</Text>
+            </TouchableHighlight>
+
+          <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('LowBattery')}>
+            <Text style={styles.buttonText}>Leave Passenger In Car</Text>
+            </TouchableHighlight>
+          </View>
+
+        </ScrollView>
+      </View>
+    );
+  }
+
+  /*<View style={styles.tabBarInfoContainer}>
+          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
+
+          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
+          </View>
+        </View>
+
+         <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
             <Text style={styles.getStartedText}>Get started by opening</Text>
@@ -59,18 +79,7 @@ export default class HomeScreen extends React.Component {
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
-    );
-  }
+  */
 
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
@@ -109,7 +118,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(232,232,232)',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -127,15 +136,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    marginTop:45,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Image:{
+    flex: 1,
     resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
   },
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
+    marginTop: 20,
+    textAlign: 'center',
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -149,7 +162,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   getStartedText: {
-    fontSize: 17,
+    fontSize: 19,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'center',
@@ -192,5 +205,20 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+  buttonContainer: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:30,
+    marginBottom:20,
+    width:250,
+    borderRadius:30,
+    backgroundColor: "rgb(224,0,0)",
+  },
+  buttonText: {
+    fontSize: 19,
+    color: 'white',
   },
 });
