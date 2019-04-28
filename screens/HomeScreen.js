@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   View,
-  Button,
+  Button, 
+  console,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import Logo from './Logo.js';
@@ -19,8 +20,8 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
-  render() {
+  
+    render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -42,7 +43,7 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.buttonText}>Passenger Reminder</Text>
             </TouchableHighlight>
 
-          <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('LowBattery')}>
+          <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('StateLaw')}>
             <Text style={styles.buttonText}>Leave Passenger In Car</Text>
             </TouchableHighlight>
           </View>
@@ -51,6 +52,7 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
+}
 
   /*<View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
@@ -79,7 +81,7 @@ export default class HomeScreen extends React.Component {
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
           </View>
-  */
+  
 
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
@@ -113,7 +115,20 @@ export default class HomeScreen extends React.Component {
       'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     );
   };
+
+  _batteryCheck = () => {
+    var dev = Platform.OS;
+    if (dev === 'ios')
+      return (
+        this.props.navigation.navigate('LowBattery')
+      )
+    else
+      return (
+        this.props.navigation.navigate('Reminder')
+      )
+  };
 }
+*/
 
 const styles = StyleSheet.create({
   container: {

@@ -17,6 +17,7 @@ import LowBattery from '../screens/LowBattery';
 import Unsafe from '../screens/Unsafe';
 
 const HomeStack = createStackNavigator({
+  StartUp: LowBattery,
   Home: HomeScreen,
   //Profile: { screen: ProfileScreen},
   Profile: ProfileScreen,
@@ -26,7 +27,7 @@ const HomeStack = createStackNavigator({
   DisarmReminder: DisarmReminder,
   DisarmLeave: DisarmLeaveInCar,
   Unsafe: Unsafe,
-  LowBattery: LowBattery,
+ 
 });
 
 HomeStack.navigationOptions = {

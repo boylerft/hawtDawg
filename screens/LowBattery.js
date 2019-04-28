@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   getStartedContainer: {
     marginHorizontal: 20,
-    marginTop: 40,
+    marginTop: 20,
     textAlign: 'center'
   },
   getStartedText: {
@@ -56,7 +56,7 @@ export default class LowBatteryScreen extends React.Component {
     static navigationOptions = {
       header: null,
     };
-    
+
     render() {
       return (
         <View style={styles.container}>
@@ -64,7 +64,7 @@ export default class LowBatteryScreen extends React.Component {
 
           <View style ={styles.getStartedContainer}>
             <Text style={styles.getStartedText}>ATTENTION!</Text>
-            <Text style={styles.getStartedText}>Smart phone or cabin monitor battery is too low. Battery charge must be higher to use this feature.</Text>
+            <Text style={styles.getStartedText}>To ensure the safety of your passengers, make sure battery is sufficiently charged before using features.</Text>
           
             <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
             <Text style={styles.buttonText}>Acknowledge</Text>

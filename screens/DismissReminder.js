@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     getStartedContainer: {
       marginHorizontal: 20,
-      marginTop: 40,
+      marginTop: 20,
       textAlign: 'center'
     },
     getStartedText: {
