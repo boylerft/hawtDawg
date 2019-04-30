@@ -1,0 +1,40 @@
+Libraries:
+    - Flask
+    - json
+    - requests
+
+To run the backend
+
+    python3 hawtData.py
+    
+    
+Then for our app, you can run this function
+
+_dataBaseCall() {
+    let flaskData = 'http:// [YOUR DEVICE IP] /get_data?latitude=' + this.state.latitude + '&longitude=' + this.state.longitude;
+    console.log(flaskData);
+    return fetch(flaskData)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log(JSON.stringify(responseJson));
+            this.setState({
+                isLoading: false,
+                allData: responseJson,
+                //gsr: responseJson.gsr,
+                //emg: responseJson.emg
+            },
+            function() {
+                
+            });
+            
+    })
+        .catch((error) => {
+            console.error(error);
+    });
+}
+
+to request the forecast data from the flask server.
+
+Replace [YOUR DEVICE IP] with the ip of your computer.
+
+Ill update the server to support sql database calls and upload it tonight.
