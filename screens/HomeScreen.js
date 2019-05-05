@@ -40,7 +40,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
           <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Reminder')}>
-            <Text style={styles.buttonText}>Passenger Reminder</Text>
+            <Text style={styles.buttonText}>Set Reminder</Text>
             </TouchableHighlight>
 
           <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('StateLaw')}>

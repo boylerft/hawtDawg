@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   android: {
    elevation: 20,   
@@ -40,11 +42,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop:30,
+    marginTop:90,
     marginBottom:20,
     width:250,
     borderRadius:30,
     backgroundColor: "rgb(224,0,0)",
+  },
+  redBarContainer: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:70,
+    marginBottom:30,
+    backgroundColor: "rgb(224,0,0)",
+  },
+  redBarText: {
+    fontSize: 22,
+    color: 'white',
   },
   buttonText: {
     fontSize: 19,
@@ -62,10 +77,13 @@ export default class LowBatteryScreen extends React.Component {
         <View style={styles.container}>
           <ScrollView style={styles.getStartedContainer} contentContainerStyle={styles.contentContainer}>
 
+          <View style ={styles.redBarContainer}>
+            <Text style={styles.redBarText}>ATTENTION!</Text>
+          </View>
+
           <View style ={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>ATTENTION!</Text>
             <Text style={styles.getStartedText}>To ensure the safety of your passengers, make sure battery is sufficiently charged before using features.</Text>
-          
+         
             <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('Home')}>
             <Text style={styles.buttonText}>Acknowledge</Text>
             </TouchableHighlight>

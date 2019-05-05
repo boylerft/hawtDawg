@@ -15,6 +15,7 @@ import DisarmLeaveInCar from '../screens/DisarmLeaveInCar';
 import DisarmReminder from '../screens/DisarmReminder';
 import LowBattery from '../screens/LowBattery';
 import Unsafe from '../screens/Unsafe';
+import SetReminder from '../screens/SetReminder';
 
 const HomeStack = createStackNavigator({
   StartUp: LowBattery,
@@ -27,7 +28,7 @@ const HomeStack = createStackNavigator({
   DisarmReminder: DisarmReminder,
   DisarmLeave: DisarmLeaveInCar,
   Unsafe: Unsafe,
- 
+  SetReminder: SetReminder,
 });
 
 HomeStack.navigationOptions = {
@@ -84,7 +85,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
+  Home:{screen: HomeStack, navigationOptions: {tabBarVisible:false}, Visible: false},
   MapStack,
   LinksStack,
   SettingsStack,

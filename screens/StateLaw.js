@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop:30,
+    marginTop:60,
     marginBottom:20,
     width:250,
     borderRadius:30,
@@ -48,6 +48,19 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 19,
+    color: 'white',
+  },
+  redBarContainer: {
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:60,
+    marginBottom:30,
+    backgroundColor: "rgb(224,0,0)",
+  },
+  redBarText: {
+    fontSize: 22,
     color: 'white',
   },
 });
@@ -62,8 +75,11 @@ export default class StateLawScreen extends React.Component {
         <View style={styles.container}>
           <ScrollView style={styles.getStartedContainer} contentContainerStyle={styles.contentContainer}>
 
+          <View style ={styles.redBarContainer}>
+            <Text style={styles.redBarText}>ATTENTION!</Text>
+          </View>
+
           <View style ={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>ATTENTION!</Text>
             <Text style={styles.getStartedText}>It is illegal in the state of California to leave a child up to six years old and to 
               leave pets unattended in conditions that present a significant risk to their health and safety.</Text>
           
