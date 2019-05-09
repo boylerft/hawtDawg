@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   Platform,
@@ -9,14 +9,85 @@ import {
   View,
   Button,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
+import { WebBrowser, Permissions, Notifications } from 'expo';
+//import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+/*
+var firebaseConfig = {
+    apiKey: "AIzaSyCWiIb6jGm3ScTIJ5VdNg6E8BhaTyygf5c",
+    authDomain: "hawt-dawg.firebaseapp.com",
+    databaseURL: "https://hawt-dawg.firebaseio.com",
+    projectId: "hawt-dawg",
+    storageBucket: "hawt-dawg.appspot.com",
+    messagingSenderId: "412200998005",
+    appId: "1:412200998005:web:7a2bdda4e9a995a6"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+*/
+
+export default class HomeScreen extends Component {
   static navigationOptions = {
     header: null,
   };
+
+    registerForPushNotificationsAsync = async () => {
+        const { status: existingStatus } = await Permissions.getAsync(
+            Permissions.NOTIFICATIONS
+        );
+        let finalStatus = existingStatus;
+
+        // only ask if permissions have not already been determined, because
+        // iOS won't necessarily prompt the user a second time.
+        if (existingStatus !== 'granted') {
+            // Android remote notification permissions are granted during the app
+            // install, so this will only ask on iOS
+            const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            finalStatus = status;
+        }
+
+        // Stop here if the user did not grant permissions
+        if (finalStatus !== 'granted') {
+            return;
+        }
+
+        try {
+            // Get the token that uniquely identifies this device
+            let token = await Notifications.getExpoPushTokenAsync();
+
+            // POST the token to your backend server from where you can retrieve it to send push notifications.
+            firebase
+                .database()
+                .ref('users/')
+                .set(token);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    async componentDidMount() {
+        this.currentUser = await firebase.auth().currentUser;
+        await this.registerForPushNotificationsAsync();
+    }
+
+    sendPushNotification = () => {
+        let response = fetch('https://exp.host/--/api/v2/push/send', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                to: 'ExponentPushToken[sqWQuwNf7yi5V-r3YitLfV]',
+                sound: 'default',
+                title: 'Demo',
+                body: 'Demo notification'
+            })
+        });
+    };
 
   render() {
     return (
@@ -33,6 +104,12 @@ export default class HomeScreen extends React.Component {
                 title="Go to Timer Screen"
                 onPress={() =>
                     this.props.navigation.navigate('Timer')
+                }
+            />
+            <Button
+                title="Send a notification"
+                onPress={() =>
+                    () => this.sendPushNotification()
                 }
             />
           </View>

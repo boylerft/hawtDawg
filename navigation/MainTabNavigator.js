@@ -9,7 +9,7 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import TimerScreen from '../screens/TimerScreen';
-
+import LoginScreen from '../screens/LoginScreen';
 
 
 const HomeStack = createStackNavigator({
@@ -62,6 +62,10 @@ const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
 
+const LoginStack = createStackNavigator({
+   Login: LoginScreen,
+});
+
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
@@ -77,4 +81,5 @@ export default createBottomTabNavigator({
   MapStack,
   LinksStack,
   SettingsStack,
+    LoginStack,
 });
